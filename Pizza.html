@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pizza Delivery System</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #D1A15B;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      .container {
+        text-align: center;
+        background-color: lightblue;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 500px;
+      }
+
+      h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .status {
+        margin-bottom: 20px;
+      }
+
+      #status {
+        font-size: 18px;
+        color: #333;
+        font-weight: bold;
+      }
+
+      button {
+        background-color: #28a745;
+        color: white;
+        font-size: 18px;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      #image {
+        width: 100%;
+        max-width: 300px;
+        margin-top: 20px;
+        border-radius: 10px;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Pizza Delivery System</h1>
+      <div class="status">
+        <p id="status">"Ready to indulge in a delicious pizza adventure? Your order awaits!Book Now & Grab 35% Off"</p>
+      </div>
+      <button id="orderButton">Place Order</button>
+      <img id="image" class="hidden" />
+    </div>
+
+    <script>
+      function msgstatus(message) {
+        document.getElementById("status").textContent = message;
+      }
+
+      function updateImage(imageSrc) {
+        const imageElement = document.getElementById("image");
+        imageElement.src = imageSrc;
+        imageElement.classList.remove("hidden");
+        
+      }
+
+      function updateBackgroundColor(color) {
+        document.body.style.backgroundColor = color;
+      }
+
+      function placeOrder(callback) {
+        msgstatus("Placing the pizza order...");
+        updateImage("https://thumbs.dreamstime.com/z/pizza-order-web-ui-design-pizza-order-web-ui-design-ui-screen-user-experience-pack-ux-design-191081947.jpg");
+        setTimeout(() => {
+            msgstatus("Order placed successfully!");
+            updateBackgroundColor("#FFEB3B");
+          callback();
+        }, 2000);
+      }
+
+      function preparePizza(callback) {
+        msgstatus("Preparing the pizza...");
+        updateImage("https://up.yimg.com/ib/th?id=OIP.k9X8zZ7BpHgZUFlG_5fWzgHaFW&pid=Api&rs=1&c=1&qlt=95&w=152&h=109");
+        setTimeout(() => {
+            msgstatus("Pizza prepared!");
+          updateBackgroundColor("#F44336"); 
+          callback();
+        }, 3000);
+      }
+
+      function bakePizza(callback) {
+        msgstatus("Baking the pizza...");
+        updateImage("https://tse1.mm.bing.net/th?id=OIP.lQegLuwNTj5_H1XVTqxqagHaE8&pid=Api&P=0&h=180");
+        setTimeout(() => {
+            msgstatus("Pizza baked!");
+            updateBackgroundColor("#FFFFFF");
+          callback();
+        }, 4000);
+      }
+
+      function packPizza(callback) {
+        msgstatus("Packing the pizza...");
+        updateImage("https://tse2.mm.bing.net/th?id=OIP.L3GtfqkAhKMxo_6oSvOG_AHaEt&pid=Api&P=0&h=180");
+        setTimeout(() => {
+            msgstatus("Pizza packed!");
+            updateBackgroundColor("#4CAF50");
+          callback();
+        }, 2000);
+      }
+
+      function deliverPizza() {
+        msgstatus("Delivering the pizza...");
+        updateImage("https://tse1.mm.bing.net/th?id=OIP.R-MwlauwxlzAqiVv91VTWAHaGS&pid=Api&P=0&h=180");
+        setTimeout(() => {
+            msgstatus("Pizza delivered! Enjoy your meal!"); 
+            updateBackgroundColor("#FF9800"); 
+          //document.getElementById("orderButton").style.display = "block";
+        }, 3000);
+      }
+
+      document.getElementById("orderButton").addEventListener("click", () => {
+        document.getElementById("orderButton").style.display = "none";
+        placeOrder(() => {
+          preparePizza(() => {
+            bakePizza(() => {
+              packPizza(() => {
+                deliverPizza();
+              });
+            });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
